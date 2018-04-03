@@ -1,12 +1,18 @@
 <template>
   <v-container fluid>
-    <v-form>
+    <v-form v-model="valid">
       <v-text-field
-        name="hoge"
-        label="Name"
+        v-model="name"
+        :rules="nameRules"
         :counter="10"
         required
       ></v-text-field>
+      <v-btn
+        @click="submit"
+        :disabled="!valid"
+      >
+        login
+      </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -21,6 +27,11 @@ export default {
         v => !!v || 'Name is required',
         v => v.length <= 10 || 'Name must be less than 10 characters'
       ]
+    }
+  },
+  methods: {
+    submit () {
+      console.log('hello')
     }
   }
 }
