@@ -1,20 +1,31 @@
 <template>
-  <v-container fluid>
-    <v-form v-model="valid">
-      <v-text-field
-        v-model="name"
-        :rules="nameRules"
-        :counter="10"
-        required
-      ></v-text-field>
-      <v-btn
-        @click="submit"
-        :disabled="!valid"
-      >
-        login
-      </v-btn>
-    </v-form>
-  </v-container>
+  <v-layout row>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card>
+        <v-form v-model="valid">
+          <v-card-title>
+            Login
+          </v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-model="name"
+              :rules="nameRules"
+              :counter="10"
+              required
+            ></v-text-field>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              @click="submit"
+              :disabled="!valid"
+            >
+              login
+            </v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -36,21 +47,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
