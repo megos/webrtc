@@ -49,7 +49,6 @@ export default {
     .then(deviceInfos => {
       for (let i = 0; i !== deviceInfos.length; ++i) {
         const deviceInfo = deviceInfos[i]
-        console.log(deviceInfo)
         if (deviceInfo.kind === 'audioinput') {
           this.audios.push({
             text: deviceInfo.label ||
