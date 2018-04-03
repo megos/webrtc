@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     submit () {
-      this.$router.push({path: 'Top', props: {name: this.name}})
+      this.$router.push({ name: 'Top', params: { name: this.name } })
     }
   }
 }

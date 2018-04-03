@@ -16,7 +16,7 @@ export default new Router({
       path: 'Top',
       name: 'Top',
       component: Top,
-      props: { name: '' }
+      props: true
     }
   ]
 })
