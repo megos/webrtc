@@ -15,6 +15,7 @@ import {
   VGrid,
   VForm,
   VTextField,
+  VSelect,
   VToolbar,
   transitions
 } from 'vuetify'
@@ -32,6 +33,7 @@ Vue.use(Vuetify, {
     VGrid,
     VForm,
     VTextField,
+    VSelect,
     VToolbar,
     transitions
   }

@@ -5,6 +5,18 @@
         <v-card-title>
           Your peer ID is {{peerId}}
         </v-card-title>
+        <v-card-text>
+          <v-select
+            :items="audios"
+            label="Audio input"
+            single-line
+          ></v-select>
+          <v-select
+            :items="videos"
+            label="Video input"
+            single-line
+          ></v-select>
+        </v-card-text>
       </v-card>
     </v-flex>
   </v-layout>
