@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     submit () {
-      console.log('hello')
+      this.$router.push({path: 'Top', props: {name: this.name}})
     }
   }
 }
