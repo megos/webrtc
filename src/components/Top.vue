@@ -47,6 +47,7 @@
             id="their-video"
             autoplay
             playsinline
+            controls
           ></video>
         </v-card-media>
       </v-card>
@@ -57,6 +58,7 @@
             muted="true"
             autoplay
             playsinline
+            controls
           ></video>
         </v-card-media>
       </v-card>
