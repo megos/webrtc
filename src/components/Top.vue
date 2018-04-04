@@ -56,13 +56,10 @@
           </v-flex>
           <v-flex d-flex md12>
             <v-card>
-              <v-card-title>
-                Login
-              </v-card-title>
               <v-card-text>
                 <v-text-field
+                  label="Call ID or Room ID"
                   v-model="callId"
-                  :counter="10"
                   required
                 ></v-text-field>
               </v-card-text>
@@ -77,6 +74,9 @@
           </v-flex>
           <v-flex d-flex md12>
             <v-card>
+              <v-card-title>
+                Your video
+              </v-card-title>
               <v-card-media>
                 <video
                   id="my-video"
