@@ -28,6 +28,30 @@
                   @change="onChange"
                 ></v-select>
               </v-card-text>
+              <v-card-actions>
+                <v-card-text>
+                  Screen share settings
+                </v-card-text>
+                <v-btn icon @click.native="show = !show">
+                  <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                </v-btn>
+              </v-card-actions>
+              <v-slide-y-transition>
+                <v-card-text v-show="show">
+                  <v-text-field
+                    label="Width (px)"
+                    v-model="width"
+                  ></v-text-field>
+                  <v-text-field
+                    label="Height (px)"
+                    v-model="height"
+                  ></v-text-field>
+                  <v-text-field
+                    label="Frame Rate (fps)"
+                    v-model="frameRate"
+                  ></v-text-field>
+                </v-card-text>
+              </v-slide-y-transition>
             </v-card>
           </v-flex>
           <v-flex d-flex md12>
@@ -93,6 +117,10 @@ export default {
       screenShare: {},
       peerId: '',
       callId: '',
+      show: false,
+      width: 600,
+      height: 400,
+      frameRate: 24,
       audios: [],
       videos: [{
         text: 'None',
@@ -158,9 +186,9 @@ export default {
           }
 
           this.screenShare.start({
-            width: 600,
-            height: 400,
-            frameRate: 24,
+            width: this.width,
+            height: this.height,
+            frameRate: this.frameRate,
             audioId: this.selectedAudio
           }).then(stream => {
             document.getElementById('my-video').srcObject = stream
