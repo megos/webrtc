@@ -77,13 +77,10 @@ export default {
       screenShare: {},
       peerId: '',
       callId: '',
-      audios: [{
-        text: 'None',
-        value: 'none'
-      }],
+      audios: [],
       videos: [{
         text: 'None',
-        value: 'none'
+        value: null
       },
       {
         text: 'Screen share',
@@ -121,7 +118,7 @@ export default {
         if (deviceInfo.kind === 'audioinput') {
           this.audios.push({
             text: deviceInfo.label ||
-            `Microphone ${this.audios.length}`,
+            `Microphone ${this.audios.length + 1}`,
             value: deviceInfo.deviceId
           })
         } else if (deviceInfo.kind === 'videoinput') {
@@ -159,8 +156,8 @@ export default {
           })
         } else {
           const constraints = {
-            audio: {deviceId: this.selectedAudio ? {exact: this.selectedAudio} : undefined},
-            video: {deviceId: this.selectedVideo ? {exact: this.selectedVideo} : undefined}
+            audio: this.selectedAudio ? {deviceId: {exact: this.selectedAudio}} : false,
+            video: this.selectedVideo ? {deviceId: {exact: this.selectedVideo}} : false
           }
           navigator.mediaDevices.getUserMedia(constraints).then(stream => {
             document.getElementById('my-video').srcObject = stream
