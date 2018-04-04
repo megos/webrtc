@@ -1,69 +1,83 @@
 <template>
-  <v-layout row>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card>
-        <v-card-title>
-          Your peer ID is {{peerId}}
-        </v-card-title>
-        <v-card-text>
-          <v-select
-            :items="audios"
-            v-model="selectedAudio"
-            label="Audio input"
-            single-line
-            @change="onChange"
-          ></v-select>
-          <v-select
-            :items="videos"
-            v-model="selectedVideo"
-            label="Video input"
-            single-line
-            @change="onChange"
-          ></v-select>
-        </v-card-text>
-      </v-card>
-      <v-card>
-        <v-card-title>
-          Login
-        </v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-model="callId"
-            :counter="10"
-            required
-          ></v-text-field>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn
-            @click="callByName"
-          >
-            Call
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-card>
-        <v-card-media>
-          <video
-            id="their-video"
-            autoplay
-            playsinline
-            controls
-          ></video>
-        </v-card-media>
-      </v-card>
-      <v-card>
-        <v-card-media>
-          <video
-            id="my-video"
-            muted="true"
-            autoplay
-            playsinline
-            controls
-          ></video>
-        </v-card-media>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
+      <v-flex d-flex md3 offset-md1>
+        <v-layout row wrap>
+          <v-flex d-flex md12>
+            <v-card>
+              <v-card-text>
+                Your peer ID is {{peerId}}
+              </v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex d-flex md12>
+            <v-card>
+              <v-card-text>
+                <v-select
+                  :items="audios"
+                  v-model="selectedAudio"
+                  label="Audio input"
+                  single-line
+                  @change="onChange"
+                ></v-select>
+                <v-select
+                  :items="videos"
+                  v-model="selectedVideo"
+                  label="Video input"
+                  single-line
+                  @change="onChange"
+                ></v-select>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex d-flex md12>
+            <v-card>
+              <v-card-title>
+                Login
+              </v-card-title>
+              <v-card-text>
+                <v-text-field
+                  v-model="callId"
+                  :counter="10"
+                  required
+                ></v-text-field>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn
+                  @click="callByName"
+                >
+                  Call
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+      <v-flex d-flex md8>
+        <v-card>
+          <v-card-media>
+            <video
+              id="their-video"
+              autoplay
+              playsinline
+              controls
+            ></video>
+          </v-card-media>
+        </v-card>
+        <v-card>
+          <v-card-media>
+            <video
+              id="my-video"
+              muted="true"
+              autoplay
+              playsinline
+              controls
+            ></video>
+          </v-card-media>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
