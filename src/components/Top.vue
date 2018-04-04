@@ -198,7 +198,7 @@ export default {
             width: this.width,
             height: this.height,
             frameRate: this.frameRate,
-            audioId: this.selectedAudio
+            audio: this.selectedAudio
           }).then(stream => {
             document.getElementById('my-video').srcObject = stream
             this.localStream = stream
