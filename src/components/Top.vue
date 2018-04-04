@@ -73,6 +73,7 @@ export default {
   data () {
     return {
       peer: {},
+      screenShare: {},
       peerId: '',
       callId: '',
       audios: [],
@@ -88,6 +89,8 @@ export default {
       key: key,
       debug: 3
     })
+
+    this.screenShare = ScreenShare.create({ debug: true })
 
     this.peer.on('open', () => {
       this.peerId = this.peer.id
