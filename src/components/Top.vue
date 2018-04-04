@@ -77,7 +77,10 @@ export default {
       peerId: '',
       callId: '',
       audios: [],
-      videos: [],
+      videos: [{
+        text: 'Screen share',
+        value: 'screenShare'
+      }],
       selectedAudio: '',
       selectedVideo: '',
       localStream: null,
@@ -116,7 +119,7 @@ export default {
         } else if (deviceInfo.kind === 'videoinput') {
           this.videos.push({
             text: deviceInfo.label ||
-            `Camera  ${this.videos.length + 1}`,
+            `Camera  ${this.videos.length}`,
             value: deviceInfo.deviceId
           })
         }
@@ -125,20 +128,40 @@ export default {
   },
   methods: {
     onChange: function () {
-      const constraints = {
-        audio: {deviceId: this.selectedAudio ? {exact: this.selectedAudio} : undefined},
-        video: {deviceId: this.selectedVideo ? {exact: this.selectedVideo} : undefined}
-      }
-      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        document.getElementById('my-video').srcObject = stream
-        this.localStream = stream
-
-        if (this.existingCall) {
-          this.existingCall.replaceStream(stream)
+      if (this.selectedVideo === 'screenShare') {
+        if (!this.screenShare.isScreenShareAvailable()) {
+          alert('Screen Share cannot be used. Please install the Chrome extension.')
+          return
         }
-      }).catch(err => {
-        console.error(err)
-      })
+
+        this.screenShare.start({
+          width: 600,
+          height: 400,
+          frameRate: 24
+        }).then(stream => {
+          document.getElementById('my-video').srcObject = stream
+          this.localStream = stream
+
+          if (this.existingCall) {
+            this.existingCall.replaceStream(stream)
+          }
+        })
+      } else {
+        const constraints = {
+          audio: {deviceId: this.selectedAudio ? {exact: this.selectedAudio} : undefined},
+          video: {deviceId: this.selectedVideo ? {exact: this.selectedVideo} : undefined}
+        }
+        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+          document.getElementById('my-video').srcObject = stream
+          this.localStream = stream
+
+          if (this.existingCall) {
+            this.existingCall.replaceStream(stream)
+          }
+        }).catch(err => {
+          console.error(err)
+        })
+      }
     },
     callByName: function () {
       this.receive(this.peer.call(this.callId, this.localStream))
