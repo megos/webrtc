@@ -76,8 +76,15 @@ export default {
       screenShare: {},
       peerId: '',
       callId: '',
-      audios: [],
+      audios: [{
+        text: 'None',
+        value: 'none'
+      }],
       videos: [{
+        text: 'None',
+        value: 'none'
+      },
+      {
         text: 'Screen share',
         value: 'screenShare'
       }],
@@ -113,13 +120,13 @@ export default {
         if (deviceInfo.kind === 'audioinput') {
           this.audios.push({
             text: deviceInfo.label ||
-            `Microphone ${this.audios.length + 1}`,
+            `Microphone ${this.audios.length}`,
             value: deviceInfo.deviceId
           })
         } else if (deviceInfo.kind === 'videoinput') {
           this.videos.push({
             text: deviceInfo.label ||
-            `Camera  ${this.videos.length}`,
+            `Camera  ${this.videos.length - 1}`,
             value: deviceInfo.deviceId
           })
         }
