@@ -8,15 +8,22 @@
         <v-card-text>
           <v-select
             :items="audios"
+            v-model="selectedAudio"
             label="Audio input"
             single-line
           ></v-select>
           <v-select
             :items="videos"
+            v-model="selectedVideo"
             label="Video input"
             single-line
           ></v-select>
         </v-card-text>
+      </v-card>
+      <v-card>
+        <v-card-media>
+          <video muted="true" autoplay playsinline></video>
+        </v-card-media>
       </v-card>
     </v-flex>
   </v-layout>
@@ -34,6 +41,8 @@ export default {
       peerId: '',
       audios: [],
       videos: [],
+      selectedAudio: '',
+      selectedVideo: '',
       localStream: {},
       existingCall: {}
     }
