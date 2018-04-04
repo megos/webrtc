@@ -110,6 +110,22 @@
         </v-card>
       </v-flex>
     </v-layout>
+
+
+    <v-dialog v-model="dialog" persistent max-width="500px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">User Profile</span>
+        </v-card-title>
+        <v-card-text>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -127,6 +143,7 @@ export default {
       peerId: '',
       callId: '',
       show: false,
+      dialog: false,
       width: 600,
       height: 400,
       frameRate: 24,
@@ -159,6 +176,7 @@ export default {
 
     // Receiving a call
     this.peer.on('call', call => {
+      this.dialog = true
       // Answer the call automatically (instead of prompting user) for demo purposes
       call.answer(this.localStream)
       this.receive(call)

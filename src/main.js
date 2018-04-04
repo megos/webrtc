@@ -16,6 +16,7 @@ import {
   VForm,
   VTextField,
   VSelect,
+  VDialog,
   VToolbar,
   transitions
 } from 'vuetify'
@@ -34,6 +35,7 @@ Vue.use(Vuetify, {
     VForm,
     VTextField,
     VSelect,
+    VDialog,
     VToolbar,
     transitions
   }
