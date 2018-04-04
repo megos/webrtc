@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import Peer from 'skyway-js'
 import { key } from '../credentials'
 
 export default {
