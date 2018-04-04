@@ -70,7 +70,7 @@
                 <v-btn
                   @click="callByName"
                   color="success"
-                  :disabled="!callId || existingCall"
+                  :disabled="(!callId || existingCall)"
                 >
                   Call
                 </v-btn>
