@@ -32,7 +32,9 @@ export default {
       peer: {},
       peerId: '',
       audios: [],
-      videos: []
+      videos: [],
+      localStream: {},
+      existingCall: {}
     }
   },
   mounted: function () {
