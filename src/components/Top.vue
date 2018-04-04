@@ -75,6 +75,19 @@
               </v-card-actions>
             </v-card>
           </v-flex>
+          <v-flex d-flex md12>
+            <v-card>
+              <v-card-media>
+                <video
+                  id="my-video"
+                  muted="true"
+                  autoplay
+                  playsinline
+                  controls
+                ></video>
+              </v-card-media>
+            </v-card>
+          </v-flex>
         </v-layout>
       </v-flex>
       <v-flex d-flex md8>
@@ -82,17 +95,6 @@
           <v-card-media>
             <video
               id="their-video"
-              autoplay
-              playsinline
-              controls
-            ></video>
-          </v-card-media>
-        </v-card>
-        <v-card>
-          <v-card-media>
-            <video
-              id="my-video"
-              muted="true"
               autoplay
               playsinline
               controls
@@ -233,3 +235,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+video {
+  width: 100%;
+}
+</style>
