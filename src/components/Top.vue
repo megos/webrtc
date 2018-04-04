@@ -11,18 +11,25 @@
             v-model="selectedAudio"
             label="Audio input"
             single-line
+            @change="onChange"
           ></v-select>
           <v-select
             :items="videos"
             v-model="selectedVideo"
             label="Video input"
             single-line
+            @change="onChange"
           ></v-select>
         </v-card-text>
       </v-card>
       <v-card>
         <v-card-media>
-          <video muted="true" autoplay playsinline></video>
+          <video
+            id="my-video"
+            muted="true"
+            autoplay
+            playsinline
+          ></video>
         </v-card-media>
       </v-card>
     </v-flex>
@@ -43,8 +50,8 @@ export default {
       videos: [],
       selectedAudio: '',
       selectedVideo: '',
-      localStream: {},
-      existingCall: {}
+      localStream: null,
+      existingCall: null
     }
   },
   mounted: function () {
@@ -76,6 +83,24 @@ export default {
         }
       }
     })
+  },
+  methods: {
+    onChange: function () {
+      const constraints = {
+        audio: {deviceId: this.selectedAudio ? {exact: this.selectedAudio} : undefined},
+        video: {deviceId: this.selectedVideo ? {exact: this.selectedVideo} : undefined}
+      }
+      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        document.getElementById('my-video').srcObject = stream
+        this.localStream = stream
+
+        if (this.existingCall) {
+          this.existingCall.replaceStream(stream)
+        }
+      }).catch(err => {
+        console.error(err)
+      })
+    }
   }
 }
 </script>
