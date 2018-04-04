@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Peer from 'skyway-js'
 import { key } from '../credentials'
 
@@ -135,40 +136,44 @@ export default {
   },
   methods: {
     onChange: function () {
-      if (this.selectedVideo === 'screenShare') {
-        if (!this.screenShare.isScreenShareAvailable()) {
-          alert('Screen Share cannot be used. Please install the Chrome extension.')
-          return
-        }
-
-        this.screenShare.start({
-          width: 600,
-          height: 400,
-          frameRate: 24
-        }).then(stream => {
-          document.getElementById('my-video').srcObject = stream
-          this.localStream = stream
-
-          if (this.existingCall) {
-            this.existingCall.replaceStream(stream)
+      Vue.nextTick(() => {
+        // See. https://github.com/vuejs/vue/issues/293#issuecomment-265716984
+        if (this.selectedVideo === 'screenShare') {
+          if (!this.screenShare.isScreenShareAvailable()) {
+            alert('Screen Share cannot be used. Please install the Chrome extension.')
+            return
           }
-        })
-      } else {
-        const constraints = {
-          audio: {deviceId: this.selectedAudio ? {exact: this.selectedAudio} : undefined},
-          video: {deviceId: this.selectedVideo ? {exact: this.selectedVideo} : undefined}
-        }
-        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-          document.getElementById('my-video').srcObject = stream
-          this.localStream = stream
 
-          if (this.existingCall) {
-            this.existingCall.replaceStream(stream)
+          this.screenShare.start({
+            width: 600,
+            height: 400,
+            frameRate: 24,
+            audioId: this.selectedAudio
+          }).then(stream => {
+            document.getElementById('my-video').srcObject = stream
+            this.localStream = stream
+
+            if (this.existingCall) {
+              this.existingCall.replaceStream(stream)
+            }
+          })
+        } else {
+          const constraints = {
+            audio: {deviceId: this.selectedAudio ? {exact: this.selectedAudio} : undefined},
+            video: {deviceId: this.selectedVideo ? {exact: this.selectedVideo} : undefined}
           }
-        }).catch(err => {
-          console.error(err)
-        })
-      }
+          navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+            document.getElementById('my-video').srcObject = stream
+            this.localStream = stream
+
+            if (this.existingCall) {
+              this.existingCall.replaceStream(stream)
+            }
+          }).catch(err => {
+            console.error(err)
+          })
+        }
+      })
     },
     callByName: function () {
       this.receive(this.peer.call(this.callId, this.localStream))
