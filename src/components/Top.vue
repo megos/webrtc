@@ -41,14 +41,17 @@
                   <v-text-field
                     label="Width (px)"
                     v-model="width"
+                    @change="onChange"
                   ></v-text-field>
                   <v-text-field
                     label="Height (px)"
                     v-model="height"
+                    @change="onChange"
                   ></v-text-field>
                   <v-text-field
                     label="Frame Rate (fps)"
                     v-model="frameRate"
+                    @change="onChange"
                   ></v-text-field>
                 </v-card-text>
               </v-slide-y-transition>
