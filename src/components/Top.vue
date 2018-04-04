@@ -246,6 +246,8 @@ export default {
                 this.existingCall.replaceStream(stream)
               }
             })
+          }).catch(err => {
+            console.error(err)
           })
         } else {
           const constraints = {
