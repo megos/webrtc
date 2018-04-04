@@ -179,6 +179,18 @@ export default {
       this.peerId = this.peer.id
     })
 
+    this.peer.on('close', () => {
+      this.close()
+    })
+
+    this.peer.on('error', () => {
+      this.close()
+    })
+
+    this.peer.on('disconnected', () => {
+      this.close()
+    })
+
     this.peer.on('call', call => {
       this.dialog = true
       this.call = call
