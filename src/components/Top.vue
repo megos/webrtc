@@ -229,15 +229,23 @@ export default {
           this.screenShare.start({
             width: this.width,
             height: this.height,
-            frameRate: this.frameRate,
-            audio: this.selectedAudio
-          }).then(stream => {
-            document.getElementById('my-video').srcObject = stream
-            this.localStream = stream
-
-            if (this.existingCall) {
-              this.existingCall.replaceStream(stream)
+            frameRate: this.frameRate
+          }).then(screenStream => {
+            const constraints = {
+              audio: this.selectedAudio ? {deviceId: {exact: this.selectedAudio}} : false,
+              video: false
             }
+            navigator.mediaDevices.getUserMedia(constraints).then(audioStream => {
+              const stream = new MediaStream()
+              screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
+              audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
+              document.getElementById('my-video').srcObject = stream
+              this.localStream = stream
+
+              if (this.existingCall) {
+                this.existingCall.replaceStream(stream)
+              }
+            })
           })
         } else {
           const constraints = {
