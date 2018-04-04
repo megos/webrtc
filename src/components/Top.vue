@@ -66,8 +66,15 @@
               <v-card-actions>
                 <v-btn
                   @click="callByName"
+                  color="success"
                 >
                   Call
+                </v-btn>
+                <v-btn
+                  @click="close"
+                  color="error"
+                >
+                  Close
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -222,15 +229,18 @@ export default {
       this.receive(this.peer.call(this.callId, this.localStream))
     },
     receive: function (call) {
-      if (this.existingCall) {
-        this.existingCall.close()
-      }
+      this.close()
       call.on('stream', stream => {
         const el = document.getElementById('their-video')
         el.srcObject = stream
         el.play()
       })
       this.existingCall = call
+    },
+    close: function () {
+      if (this.existingCall) {
+        this.existingCall.close()
+      }
     }
   }
 }
