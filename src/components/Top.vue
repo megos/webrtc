@@ -23,6 +23,34 @@
         </v-card-text>
       </v-card>
       <v-card>
+        <v-card-title>
+          Login
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="callId"
+            :counter="10"
+            required
+          ></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            @click="callByName"
+          >
+            Call
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-card>
+        <v-card-media>
+          <video
+            id="their-video"
+            autoplay
+            playsinline
+          ></video>
+        </v-card-media>
+      </v-card>
+      <v-card>
         <v-card-media>
           <video
             id="my-video"
@@ -46,6 +74,7 @@ export default {
     return {
       peer: {},
       peerId: '',
+      callId: '',
       audios: [],
       videos: [],
       selectedAudio: '',
@@ -62,6 +91,13 @@ export default {
 
     this.peer.on('open', () => {
       this.peerId = this.peer.id
+    })
+
+    // Receiving a call
+    this.peer.on('call', call => {
+      // Answer the call automatically (instead of prompting user) for demo purposes
+      call.answer(this.localStream)
+      this.receive(call)
     })
 
     navigator.mediaDevices.enumerateDevices()
@@ -100,6 +136,20 @@ export default {
       }).catch(err => {
         console.error(err)
       })
+    },
+    callByName: function () {
+      this.receive(this.peer.call(this.callId, this.localStream))
+    },
+    receive: function (call) {
+      if (this.existingCall) {
+        this.existingCall.close()
+      }
+      call.on('stream', stream => {
+        const el = document.getElementById('their-video')
+        el.srcObject = stream
+        el.play()
+      })
+      this.existingCall = call
     }
   }
 }
