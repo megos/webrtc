@@ -99,6 +99,9 @@
       </v-flex>
       <v-flex d-flex md8>
         <v-card>
+          <v-card-title v-if="existingCall">
+            Connecting {{ existingCall.remoteId }}
+          </v-card-title>
           <v-card-media>
             <video
               id="their-video"
@@ -111,18 +114,15 @@
       </v-flex>
     </v-layout>
 
-
-    <v-dialog v-model="dialog" persistent max-width="500px">
+    <v-dialog v-model="dialog" persistent max-width="300px">
       <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
+        <v-card-title v-if="call">
+          <span class="headline">Calling from {{ call.remoteId }}</span>
         </v-card-title>
-        <v-card-text>
-        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
+          <v-btn color="success" @click="connect">Connect</v-btn>
+          <v-btn color="error" @click="disconnect">Disconnect</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -159,6 +159,7 @@ export default {
       selectedAudio: '',
       selectedVideo: '',
       localStream: null,
+      call: null,
       existingCall: null
     }
   },
@@ -174,12 +175,9 @@ export default {
       this.peerId = this.peer.id
     })
 
-    // Receiving a call
     this.peer.on('call', call => {
       this.dialog = true
-      // Answer the call automatically (instead of prompting user) for demo purposes
-      call.answer(this.localStream)
-      this.receive(call)
+      this.call = call
     })
 
     navigator.mediaDevices.enumerateDevices()
@@ -246,6 +244,17 @@ export default {
     callByName: function () {
       this.receive(this.peer.call(this.callId, this.localStream))
     },
+    connect: function () {
+      this.dialog = false
+      this.call.answer(this.localStream)
+      this.receive(this.call)
+      this.call = null
+    },
+    disconnect: function () {
+      this.dialog = false
+      this.call.close()
+      this.call = null
+    },
     receive: function (call) {
       this.close()
       call.on('stream', stream => {
@@ -258,6 +267,7 @@ export default {
     close: function () {
       if (this.existingCall) {
         this.existingCall.close()
+        this.existingCall = null
       }
     }
   }
