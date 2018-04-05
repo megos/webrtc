@@ -8,6 +8,9 @@
 # install dependencies
 npm install
 
+# modify your key
+sed -e 's/SkyWay key/[Your SkyWay key]/' src/credentials.js.sample > src/credentials.js
+
 # serve with hot reload at localhost:8080
 npm run dev
 
