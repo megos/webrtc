@@ -232,23 +232,32 @@ export default {
             frameRate: this.frameRate,
             mediaSource: 'screen'
           }).then(screenStream => {
-            const constraints = {
-              audio: this.selectedAudio ? {deviceId: {exact: this.selectedAudio}} : false,
-              video: false
-            }
-            navigator.mediaDevices.getUserMedia(constraints).then(audioStream => {
-              const stream = new MediaStream()
-              screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
-              audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
-              document.getElementById('my-video').srcObject = stream
-              this.localStream = stream
+            if (this.selectedAudio) {
+              const constraints = {
+                audio: {deviceId: {exact: this.selectedAudio}},
+                video: false
+              }
+              navigator.mediaDevices.getUserMedia(constraints).then(audioStream => {
+                const stream = new MediaStream()
+                screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
+                audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
+                document.getElementById('my-video').srcObject = stream
+                this.localStream = stream
+
+                if (this.existingCall) {
+                  this.existingCall.replaceStream(stream)
+                }
+              }).catch(err => {
+                console.error(err)
+              })
+            } else {
+              document.getElementById('my-video').srcObject = screenStream
+              this.localStream = screenStream
 
               if (this.existingCall) {
-                this.existingCall.replaceStream(stream)
+                this.existingCall.replaceStream(screenStream)
               }
-            }).catch(err => {
-              console.error(err)
-            })
+            }
           }).catch(err => {
             console.error(err)
           })
