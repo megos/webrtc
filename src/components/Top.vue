@@ -229,7 +229,8 @@ export default {
           this.screenShare.start({
             width: this.width,
             height: this.height,
-            frameRate: this.frameRate
+            frameRate: this.frameRate,
+            mediaSource: 'screen'
           }).then(screenStream => {
             const constraints = {
               audio: this.selectedAudio ? {deviceId: {exact: this.selectedAudio}} : false,
