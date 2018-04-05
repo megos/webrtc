@@ -1,6 +1,7 @@
 # webrtc
 
-> A Vue.js project
+> A SkyWay sample on Vue.js
+> Video chat and screen share
 
 ## Build Setup
 
