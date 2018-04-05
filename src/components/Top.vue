@@ -241,22 +241,12 @@ export default {
                 const stream = new MediaStream()
                 screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
                 audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
-                document.getElementById('my-video').srcObject = stream
-                this.localStream = stream
-
-                if (this.existingCall) {
-                  this.existingCall.replaceStream(stream)
-                }
+                this.replaceStream(stream)
               }).catch(err => {
                 console.error(err)
               })
             } else {
-              document.getElementById('my-video').srcObject = screenStream
-              this.localStream = screenStream
-
-              if (this.existingCall) {
-                this.existingCall.replaceStream(screenStream)
-              }
+              this.replaceStream(screenStream)
             }
           }).catch(err => {
             console.error(err)
@@ -267,12 +257,7 @@ export default {
             video: this.selectedVideo ? {deviceId: {exact: this.selectedVideo}} : false
           }
           navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-            document.getElementById('my-video').srcObject = stream
-            this.localStream = stream
-
-            if (this.existingCall) {
-              this.existingCall.replaceStream(stream)
-            }
+            this.replaceStream(stream)
           }).catch(err => {
             console.error(err)
           })
@@ -306,6 +291,14 @@ export default {
       if (this.existingCall) {
         this.existingCall.close()
         this.existingCall = null
+      }
+    },
+    replaceStream: function (stream) {
+      document.getElementById('my-video').srcObject = stream
+      this.localStream = stream
+
+      if (this.existingCall) {
+        this.existingCall.replaceStream(stream)
       }
     }
   }
