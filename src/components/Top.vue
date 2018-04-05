@@ -53,6 +53,13 @@
                     v-model="frameRate"
                     @change="onChange"
                   ></v-text-field>
+                  <v-select
+                    :items="mediaSourceItem"
+                    v-model="mediaSource"
+                    label="Media source"
+                    single-line
+                    @change="onChange"
+                  ></v-select>
                 </v-card-text>
               </v-slide-y-transition>
             </v-card>
@@ -151,6 +158,7 @@ export default {
       width: 600,
       height: 400,
       frameRate: 24,
+      mediaSource: 'window',
       audios: [],
       videos: [{
         text: 'None',
@@ -160,6 +168,7 @@ export default {
         text: 'Screen share',
         value: 'screenShare'
       }],
+      mediaSourceItem: [ 'window', 'application', 'screen' ],
       selectedAudio: '',
       selectedVideo: '',
       localStream: null,
@@ -230,7 +239,7 @@ export default {
             width: this.width,
             height: this.height,
             frameRate: this.frameRate,
-            mediaSource: 'screen'
+            mediaSource: this.mediaSource
           }).then(screenStream => {
             if (this.selectedAudio) {
               const constraints = {
