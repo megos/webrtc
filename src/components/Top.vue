@@ -245,6 +245,8 @@ export default {
               if (this.existingCall) {
                 this.existingCall.replaceStream(stream)
               }
+            }).catch(err => {
+              console.error(err)
             })
           }).catch(err => {
             console.error(err)
