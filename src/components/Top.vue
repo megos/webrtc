@@ -137,6 +137,14 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-snackbar
+      color="error"
+      v-model="snackbar"
+    >
+      {{ errorMessage.toString() }}
+      <v-btn dark flat @click="closeSnackbar">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -173,7 +181,8 @@ export default {
       selectedVideo: '',
       localStream: null,
       call: null,
-      existingCall: null
+      existingCall: null,
+      errorMessage: ''
     }
   },
   mounted: function () {
@@ -225,13 +234,21 @@ export default {
       }
     })
   },
+  computed: {
+    snackbar: {
+      get: function () {
+        return !!this.errorMessage
+      },
+      set: function () {}
+    }
+  },
   methods: {
     onChange: function () {
       Vue.nextTick(() => {
         // See. https://github.com/vuejs/vue/issues/293#issuecomment-265716984
         if (this.selectedVideo === 'screenShare') {
           if (!this.screenShare.isScreenShareAvailable()) {
-            alert('Screen Share cannot be used. Please install the Chrome extension.')
+            this.errorMessage = 'Screen Share cannot be used. Please install the Chrome extension.'
             return
           }
 
@@ -252,13 +269,13 @@ export default {
                 audioStream.getAudioTracks().forEach((track) => stream.addTrack(track.clone()))
                 this.replaceStream(stream)
               }).catch((err) => {
-                console.error(err)
+                this.errorMessage = err
               })
             } else {
               this.replaceStream(screenStream)
             }
           }).catch((err) => {
-            console.error(err)
+            this.errorMessage = err
           })
         } else {
           const constraints = {
@@ -268,7 +285,7 @@ export default {
           navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
             this.replaceStream(stream)
           }).catch((err) => {
-            console.error(err)
+            this.errorMessage = err
           })
         }
       })
@@ -301,6 +318,9 @@ export default {
         this.existingCall.close()
         this.existingCall = null
       }
+    },
+    closeSnackbar: function () {
+      this.errorMessage = ''
     },
     replaceStream: function (stream) {
       document.getElementById('my-video').srcObject = stream

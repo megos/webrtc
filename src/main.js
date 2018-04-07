@@ -7,17 +7,14 @@ import {
   Vuetify,
   VApp,
   VCard,
-  VNavigationDrawer,
-  VFooter,
-  VList,
   VBtn,
-  VIcon,
-  VGrid,
-  VForm,
-  VTextField,
-  VSelect,
   VDialog,
-  VToolbar,
+  VGrid,
+  VIcon,
+  VForm,
+  VSelect,
+  VSnackbar,
+  VTextField,
   transitions
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -26,17 +23,14 @@ Vue.use(Vuetify, {
   components: {
     VApp,
     VCard,
-    VNavigationDrawer,
-    VFooter,
-    VList,
     VBtn,
-    VIcon,
-    VGrid,
-    VForm,
-    VTextField,
-    VSelect,
     VDialog,
-    VToolbar,
+    VGrid,
+    VIcon,
+    VForm,
+    VSelect,
+    VSnackbar,
+    VTextField,
     transitions
   }
 })
