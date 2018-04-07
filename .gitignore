@@ -1,3 +1,5 @@
+src/credentials.js
+
 .DS_Store
 node_modules/
 /dist/
@@ -10,7 +12,7 @@ selenium-debug.log
 
 # Editor directories and files
 .idea
-.vscode
+#.vscode
 *.suo
 *.ntvs*
 *.njsproj

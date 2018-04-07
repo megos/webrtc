@@ -1,12 +1,19 @@
 # webrtc
 
-> A Vue.js project
+> A SkyWay sample on Vue.js
+> Video chat and screen share
+
+## Screenshot
+![image](https://cdn-ak.f.st-hatena.com/images/fotolife/t/tmegos/20180407/20180407113904.png)
 
 ## Build Setup
 
 ``` bash
 # install dependencies
 npm install
+
+# modify your key
+sed -e 's/SkyWay key/[Your SkyWay key]/' src/credentials.js.sample > src/credentials.js
 
 # serve with hot reload at localhost:8080
 npm run dev
