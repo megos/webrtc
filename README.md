@@ -3,6 +3,9 @@
 > A SkyWay sample on Vue.js
 > Video chat and screen share
 
+## Screenshot
+![image](https://cdn-ak.f.st-hatena.com/images/fotolife/t/tmegos/20180407/20180407113904.png)
+
 ## Build Setup
 
 ``` bash
