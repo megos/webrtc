@@ -68,7 +68,7 @@
             <v-card>
               <v-card-text>
                 <v-text-field
-                  label="Call ID or Room ID"
+                  label="Call ID"
                   v-model="callId"
                   required
                 ></v-text-field>
@@ -108,7 +108,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex d-flex md8>
+      <v-flex d-flex md7>
         <v-card>
           <v-card-title v-if="existingCall">
             Connecting {{ existingCall.remoteId }}
