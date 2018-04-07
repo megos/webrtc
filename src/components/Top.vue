@@ -146,7 +146,7 @@ import Peer from 'skyway-js'
 import { key } from '../credentials'
 
 export default {
-  props: [ 'name' ],
+  props: ['name'],
   data () {
     return {
       peer: {},
@@ -168,7 +168,7 @@ export default {
         text: 'Screen share',
         value: 'screenShare'
       }],
-      mediaSourceItem: [ 'window', 'application', 'screen' ],
+      mediaSourceItem: ['window', 'application', 'screen'],
       selectedAudio: '',
       selectedVideo: '',
       localStream: null,
@@ -200,13 +200,13 @@ export default {
       this.close()
     })
 
-    this.peer.on('call', call => {
+    this.peer.on('call', (call) => {
       this.dialog = true
       this.call = call
     })
 
     navigator.mediaDevices.enumerateDevices()
-    .then(deviceInfos => {
+    .then((deviceInfos) => {
       for (let i = 0; i !== deviceInfos.length; ++i) {
         const deviceInfo = deviceInfos[i]
         if (deviceInfo.kind === 'audioinput') {
@@ -240,34 +240,34 @@ export default {
             height: this.height,
             frameRate: this.frameRate,
             mediaSource: this.mediaSource
-          }).then(screenStream => {
+          }).then((screenStream) => {
             if (this.selectedAudio) {
               const constraints = {
-                audio: {deviceId: {exact: this.selectedAudio}},
+                audio: { deviceId: { exact: this.selectedAudio } },
                 video: false
               }
-              navigator.mediaDevices.getUserMedia(constraints).then(audioStream => {
+              navigator.mediaDevices.getUserMedia(constraints).then((audioStream) => {
                 const stream = new MediaStream()
-                screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
-                audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
+                screenStream.getVideoTracks().forEach((track) => stream.addTrack(track.clone()))
+                audioStream.getAudioTracks().forEach((track) => stream.addTrack(track.clone()))
                 this.replaceStream(stream)
-              }).catch(err => {
+              }).catch((err) => {
                 console.error(err)
               })
             } else {
               this.replaceStream(screenStream)
             }
-          }).catch(err => {
+          }).catch((err) => {
             console.error(err)
           })
         } else {
           const constraints = {
-            audio: this.selectedAudio ? {deviceId: {exact: this.selectedAudio}} : false,
-            video: this.selectedVideo ? {deviceId: {exact: this.selectedVideo}} : false
+            audio: this.selectedAudio ? { deviceId: { exact: this.selectedAudio } } : false,
+            video: this.selectedVideo ? { deviceId: { exact: this.selectedVideo } } : false
           }
-          navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+          navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
             this.replaceStream(stream)
-          }).catch(err => {
+          }).catch((err) => {
             console.error(err)
           })
         }
@@ -289,7 +289,7 @@ export default {
     },
     receive: function (call) {
       this.close()
-      call.on('stream', stream => {
+      call.on('stream', (stream) => {
         const el = document.getElementById('their-video')
         el.srcObject = stream
         el.play()
