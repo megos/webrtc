@@ -27,6 +27,12 @@
                   single-line
                   @change="onChange"
                 ></v-select>
+                <v-select
+                  :items="codecs"
+                  v-model="selectedCodec"
+                  label="Video codec"
+                  single-line
+                ></v-select>
               </v-card-text>
               <v-card-actions>
                 <v-card-text>
@@ -176,9 +182,11 @@ export default {
         text: 'Screen share',
         value: 'screenShare'
       }],
+      codecs: ['VP8', 'VP9', 'H264'],
       mediaSourceItem: ['window', 'application', 'screen'],
       selectedAudio: '',
       selectedVideo: '',
+      selectedCodec: 'VP9',
       localStream: null,
       call: null,
       existingCall: null,
@@ -291,11 +299,15 @@ export default {
       })
     },
     callByName: function () {
-      this.receive(this.peer.call(this.callId, this.localStream))
+      this.receive(this.peer.call(this.callId, this.localStream, {
+        videoCodec: this.selectedCodec
+      }))
     },
     connect: function () {
       this.dialog = false
-      this.call.answer(this.localStream)
+      this.call.answer(this.localStream, {
+        videoCodec: this.selectedCodec
+      })
       this.receive(this.call)
       this.call = null
     },
