@@ -6735,9 +6735,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-skyway-js@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/skyway-js/-/skyway-js-1.1.7.tgz#fffe0970dc59ecafc6ef2e543888cdd6bc5c1812"
+skyway-js@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/skyway-js/-/skyway-js-1.1.12.tgz#fbc6c78346779fa6e766524a0c7e8adcf1f2e2de"
   dependencies:
     detect-browser "^2.1.0"
     enum "git+https://github.com/eastandwest/enum.git#react-native"
@@ -7641,7 +7641,7 @@ vue-style-loader@^3.0.0, vue-style-loader@^3.0.1:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@^2.5.2:
+vue-template-compiler@^2.5.16:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.16.tgz#93b48570e56c720cdf3f051cc15287c26fbd04cb"
   dependencies:
@@ -7652,13 +7652,13 @@ vue-template-es2015-compiler@^1.5.3, vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@^2.5.2:
+vue@^2.5.16:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
 
-vuetify@^1.0.0:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.11.tgz#c6b262f3b4d062e810d62a08481991e4c090e116"
+vuetify@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.19.tgz#fb6d123dd1c217795fc2333e912c0ecbed2ed69e"
 
 walker@~1.0.5:
   version "1.0.7"
