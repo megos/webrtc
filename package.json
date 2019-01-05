@@ -35,6 +35,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
+    "globals": {
+      "ScreenShare": true
+    },
     "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
