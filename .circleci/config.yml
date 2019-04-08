@@ -38,3 +38,7 @@ jobs:
             yarn build
       - store_test_results:
           path: ./reports
+
+      - run:
+          name: build
+          command: yarn build
