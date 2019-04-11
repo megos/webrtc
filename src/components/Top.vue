@@ -157,7 +157,6 @@
 <script>
 import Vue from 'vue'
 import Peer from 'skyway-js'
-import { key } from '../credentials'
 
 export default {
   props: ['name'],
@@ -195,7 +194,7 @@ export default {
   },
   mounted: function () {
     this.peer = new Peer(this.name, {
-      key: key,
+      key: process.env.VUE_APP_SKYWAY_KEY,
       debug: 3
     })
 

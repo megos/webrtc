@@ -13,7 +13,7 @@ yarn install
 
 ### Modify your key
 ```
-sed -e 's/SkyWay key/[Your SkyWay key]/' src/credentials.js.sample > src/credentials.js
+sed -e 's/YourSkyWayKey/[Your SkyWay key]/' .env.sample > .env
 ```
 
 ### Compiles and hot-reloads for development
