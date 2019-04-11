@@ -1,4 +1,4 @@
-src/credentials.js
+.env
 
 .DS_Store
 node_modules
