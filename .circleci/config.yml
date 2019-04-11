@@ -33,7 +33,7 @@ jobs:
           name: lint
           command: |
             mkdir ./reports
-            mv src/credentials.js{.sample,}
+            mv .env{.sample,}
             yarn eslint src --format junit --output-file ./reports/results.xml
       - store_test_results:
           path: ./reports
