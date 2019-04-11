@@ -282,8 +282,7 @@ export default {
 
     navigator.mediaDevices.enumerateDevices()
       .then((deviceInfos) => {
-        for (let i = 0; i !== deviceInfos.length; ++i) {
-          const deviceInfo = deviceInfos[i]
+        deviceInfos.forEach((deviceInfo) => {
           if (deviceInfo.kind === 'audioinput') {
             this.audios.push({
               text: deviceInfo.label
@@ -297,7 +296,7 @@ export default {
               value: deviceInfo.deviceId,
             })
           }
-        }
+        })
       })
   },
   methods: {
