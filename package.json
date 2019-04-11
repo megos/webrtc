@@ -14,12 +14,12 @@
     "vuetify": "1.5.11"
   },
   "devDependencies": {
+    "@megos/eslint-config-vue": "^0.0.2",
     "@vue/cli-plugin-babel": "3.5.5",
     "@vue/cli-plugin-eslint": "3.5.1",
     "@vue/cli-service": "3.5.3",
     "babel-eslint": "10.0.1",
     "eslint": "5.16.0",
-    "eslint-plugin-vue": "5.2.2",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.2",
     "vue-cli-plugin-vuetify": "0.5.0",
@@ -32,13 +32,11 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "@megos/eslint-config-vue"
     ],
     "globals": {
       "ScreenShare": true
     },
-    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }
