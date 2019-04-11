@@ -210,7 +210,12 @@ import Vue from 'vue'
 import Peer from 'skyway-js'
 
 export default {
-  props: ['name'],
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       peer: {},
