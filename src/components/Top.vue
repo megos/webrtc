@@ -1,102 +1,130 @@
 <template>
-  <v-container fluid grid-list-md>
-    <v-layout row wrap>
-      <v-flex d-flex md3 offset-md1>
-        <v-layout row wrap>
-          <v-flex d-flex md12>
+  <v-container
+    fluid
+    grid-list-md
+  >
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex
+        d-flex
+        md3
+        offset-md1
+      >
+        <v-layout
+          row
+          wrap
+        >
+          <v-flex
+            d-flex
+            md12
+          >
             <v-card>
               <v-card-text>
-                Your peer ID is {{peerId}}
+                Your peer ID is {{ peerId }}
               </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex d-flex md12>
+          <v-flex
+            d-flex
+            md12
+          >
             <v-card>
               <v-card-text>
                 <v-select
-                  :items="audios"
                   v-model="selectedAudio"
+                  :items="audios"
                   label="Audio input"
                   single-line
                   @change="onChange"
-                ></v-select>
+                />
                 <v-select
-                  :items="videos"
                   v-model="selectedVideo"
+                  :items="videos"
                   label="Video input"
                   single-line
                   @change="onChange"
-                ></v-select>
+                />
                 <v-select
-                  :items="codecs"
                   v-model="selectedCodec"
+                  :items="codecs"
                   label="Video codec"
                   single-line
-                ></v-select>
+                />
               </v-card-text>
               <v-card-actions>
                 <v-card-text>
                   Screen share settings
                 </v-card-text>
-                <v-btn icon @click.native="show = !show">
+                <v-btn
+                  icon
+                  @click.native="show = !show"
+                >
                   <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
                 </v-btn>
               </v-card-actions>
               <v-slide-y-transition>
                 <v-card-text v-show="show">
                   <v-text-field
-                    label="Width (px)"
                     v-model="width"
+                    label="Width (px)"
                     @change="onChange"
-                  ></v-text-field>
+                  />
                   <v-text-field
-                    label="Height (px)"
                     v-model="height"
+                    label="Height (px)"
                     @change="onChange"
-                  ></v-text-field>
+                  />
                   <v-text-field
-                    label="Frame Rate (fps)"
                     v-model="frameRate"
+                    label="Frame Rate (fps)"
                     @change="onChange"
-                  ></v-text-field>
+                  />
                   <v-select
-                    :items="mediaSourceItem"
                     v-model="mediaSource"
+                    :items="mediaSourceItem"
                     label="Media source"
                     single-line
                     @change="onChange"
-                  ></v-select>
+                  />
                 </v-card-text>
               </v-slide-y-transition>
             </v-card>
           </v-flex>
-          <v-flex d-flex md12>
+          <v-flex
+            d-flex
+            md12
+          >
             <v-card>
               <v-card-text>
                 <v-text-field
-                  label="Call ID"
                   v-model="callId"
+                  label="Call ID"
                   required
-                ></v-text-field>
+                />
               </v-card-text>
               <v-card-actions>
                 <v-btn
-                  @click="callByName"
                   color="success"
                   :disabled="(!callId || existingCall)"
+                  @click="callByName"
                 >
                   Call
                 </v-btn>
                 <v-btn
-                  @click="close"
                   color="error"
+                  @click="close"
                 >
                   Close
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
-          <v-flex d-flex md12>
+          <v-flex
+            d-flex
+            md12
+          >
             <v-card>
               <v-card-title>
                 Your video
@@ -108,13 +136,16 @@
                   autoplay
                   playsinline
                   controls
-                ></video>
+                />
               </v-card-media>
             </v-card>
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex d-flex md7>
+      <v-flex
+        d-flex
+        md7
+      >
         <v-card>
           <v-card-title v-if="existingCall">
             Connecting {{ existingCall.remoteId }}
@@ -125,31 +156,51 @@
               autoplay
               playsinline
               controls
-            ></video>
+            />
           </v-card-media>
         </v-card>
       </v-flex>
     </v-layout>
 
-    <v-dialog v-model="dialog" persistent max-width="300px">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="300px"
+    >
       <v-card>
         <v-card-title v-if="call">
           <span class="headline">Calling from {{ call.remoteId }}</span>
         </v-card-title>
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="success" @click="connect">Connect</v-btn>
-          <v-btn color="error" @click="disconnect">Disconnect</v-btn>
+          <v-spacer />
+          <v-btn
+            color="success"
+            @click="connect"
+          >
+            Connect
+          </v-btn>
+          <v-btn
+            color="error"
+            @click="disconnect"
+          >
+            Disconnect
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
     <v-snackbar
-      color="error"
       v-model="snackbar"
+      color="error"
     >
       {{ errorMessage.toString() }}
-      <v-btn dark flat @click="closeSnackbar">Close</v-btn>
+      <v-btn
+        dark
+        flat
+        @click="closeSnackbar"
+      >
+        Close
+      </v-btn>
     </v-snackbar>
   </v-container>
 </template>
@@ -160,7 +211,7 @@ import Peer from 'skyway-js'
 
 export default {
   props: ['name'],
-  data () {
+  data() {
     return {
       peer: {},
       screenShare: {},
@@ -175,11 +226,11 @@ export default {
       audios: [],
       videos: [{
         text: 'None',
-        value: null
+        value: null,
       },
       {
         text: 'Screen share',
-        value: 'screenShare'
+        value: 'screenShare',
       }],
       codecs: ['VP8', 'VP9', 'H264'],
       mediaSourceItem: ['window', 'application', 'screen'],
@@ -189,13 +240,21 @@ export default {
       localStream: null,
       call: null,
       existingCall: null,
-      errorMessage: ''
+      errorMessage: '',
     }
   },
-  mounted: function () {
+  computed: {
+    snackbar: {
+      get() {
+        return !!this.errorMessage
+      },
+      set() {},
+    },
+  },
+  mounted() {
     this.peer = new Peer(this.name, {
       key: process.env.VUE_APP_SKYWAY_KEY,
-      debug: 3
+      debug: 3,
     })
 
     this.screenShare = ScreenShare.create({ debug: true })
@@ -222,35 +281,27 @@ export default {
     })
 
     navigator.mediaDevices.enumerateDevices()
-    .then((deviceInfos) => {
-      for (let i = 0; i !== deviceInfos.length; ++i) {
-        const deviceInfo = deviceInfos[i]
-        if (deviceInfo.kind === 'audioinput') {
-          this.audios.push({
-            text: deviceInfo.label ||
-            `Microphone ${this.audios.length + 1}`,
-            value: deviceInfo.deviceId
-          })
-        } else if (deviceInfo.kind === 'videoinput') {
-          this.videos.push({
-            text: deviceInfo.label ||
-            `Camera  ${this.videos.length - 1}`,
-            value: deviceInfo.deviceId
-          })
+      .then((deviceInfos) => {
+        for (let i = 0; i !== deviceInfos.length; ++i) {
+          const deviceInfo = deviceInfos[i]
+          if (deviceInfo.kind === 'audioinput') {
+            this.audios.push({
+              text: deviceInfo.label
+            || `Microphone ${this.audios.length + 1}`,
+              value: deviceInfo.deviceId,
+            })
+          } else if (deviceInfo.kind === 'videoinput') {
+            this.videos.push({
+              text: deviceInfo.label
+            || `Camera  ${this.videos.length - 1}`,
+              value: deviceInfo.deviceId,
+            })
+          }
         }
-      }
-    })
-  },
-  computed: {
-    snackbar: {
-      get: function () {
-        return !!this.errorMessage
-      },
-      set: function () {}
-    }
+      })
   },
   methods: {
-    onChange: function () {
+    onChange() {
       Vue.nextTick(() => {
         // See. https://github.com/vuejs/vue/issues/293#issuecomment-265716984
         if (this.selectedVideo === 'screenShare') {
@@ -263,17 +314,17 @@ export default {
             width: this.width,
             height: this.height,
             frameRate: this.frameRate,
-            mediaSource: this.mediaSource
+            mediaSource: this.mediaSource,
           }).then((screenStream) => {
             if (this.selectedAudio) {
               const constraints = {
                 audio: { deviceId: { exact: this.selectedAudio } },
-                video: false
+                video: false,
               }
               navigator.mediaDevices.getUserMedia(constraints).then((audioStream) => {
                 const stream = new MediaStream()
-                screenStream.getVideoTracks().forEach((track) => stream.addTrack(track.clone()))
-                audioStream.getAudioTracks().forEach((track) => stream.addTrack(track.clone()))
+                screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
+                audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
                 this.replaceStream(stream)
               }).catch((err) => {
                 this.errorMessage = err
@@ -287,7 +338,7 @@ export default {
         } else {
           const constraints = {
             audio: this.selectedAudio ? { deviceId: { exact: this.selectedAudio } } : false,
-            video: this.selectedVideo ? { deviceId: { exact: this.selectedVideo } } : false
+            video: this.selectedVideo ? { deviceId: { exact: this.selectedVideo } } : false,
           }
           navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
             this.replaceStream(stream)
@@ -297,25 +348,25 @@ export default {
         }
       })
     },
-    callByName: function () {
+    callByName() {
       this.receive(this.peer.call(this.callId, this.localStream, {
-        videoCodec: this.selectedCodec
+        videoCodec: this.selectedCodec,
       }))
     },
-    connect: function () {
+    connect() {
       this.dialog = false
       this.call.answer(this.localStream, {
-        videoCodec: this.selectedCodec
+        videoCodec: this.selectedCodec,
       })
       this.receive(this.call)
       this.call = null
     },
-    disconnect: function () {
+    disconnect() {
       this.dialog = false
       this.call.close()
       this.call = null
     },
-    receive: function (call) {
+    receive(call) {
       this.close()
       call.on('stream', (stream) => {
         const el = document.getElementById('their-video')
@@ -324,24 +375,24 @@ export default {
       })
       this.existingCall = call
     },
-    close: function () {
+    close() {
       if (this.existingCall) {
         this.existingCall.close()
         this.existingCall = null
       }
     },
-    closeSnackbar: function () {
+    closeSnackbar() {
       this.errorMessage = ''
     },
-    replaceStream: function (stream) {
+    replaceStream(stream) {
       document.getElementById('my-video').srcObject = stream
       this.localStream = stream
 
       if (this.existingCall) {
         this.existingCall.replaceStream(stream)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

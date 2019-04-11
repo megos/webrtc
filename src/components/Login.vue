@@ -1,6 +1,10 @@
 <template>
   <v-layout row>
-    <v-flex xs12 sm6 offset-sm3>
+    <v-flex
+      xs12
+      sm6
+      offset-sm3
+    >
       <v-card>
         <v-form v-model="valid">
           <v-card-title>
@@ -12,12 +16,12 @@
               :rules="nameRules"
               :counter="10"
               required
-            ></v-text-field>
+            />
           </v-card-text>
           <v-card-actions>
             <v-btn
-              @click="submit"
               :disabled="!valid"
+              @click="submit"
             >
               login
             </v-btn>
@@ -30,20 +34,20 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       valid: false,
       name: '',
       nameRules: [
-        (v) => !!v || 'Name is required',
-        (v) => v.length <= 10 || 'Name must be less than 10 characters'
-      ]
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters',
+      ],
     }
   },
   methods: {
-    submit () {
+    submit() {
       this.$router.push({ name: 'Top', params: { name: this.name } })
-    }
-  }
+    },
+  },
 }
 </script>
