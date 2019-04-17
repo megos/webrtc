@@ -1,7 +1,6 @@
 # webrtc
 
-> A SkyWay sample on Vue.js
-> Video chat and screen share
+> A video chat and screen share made with Vue.js and SkyWay (WebRTC platform)
 
 ## Screenshot
 ![image](https://cdn-ak.f.st-hatena.com/images/fotolife/t/tmegos/20180407/20180407113904.png)
