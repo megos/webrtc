@@ -327,8 +327,8 @@ export default {
               }
               navigator.mediaDevices.getUserMedia(constraints).then((audioStream) => {
                 const stream = new MediaStream()
-                screenStream.getVideoTracks().forEach(track => stream.addTrack(track.clone()))
-                audioStream.getAudioTracks().forEach(track => stream.addTrack(track.clone()))
+                screenStream.getVideoTracks().forEach((track) => stream.addTrack(track.clone()))
+                audioStream.getAudioTracks().forEach((track) => stream.addTrack(track.clone()))
                 this.replaceStream(stream)
               }).catch((err) => {
                 this.errorMessage = err
