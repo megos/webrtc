@@ -1,34 +1,22 @@
 <template>
-  <v-container
-    fluid
-    grid-list-md
-  >
-    <v-layout
-      row
-      wrap
-    >
-      <v-flex
-        d-flex
-        md3
-        offset-md1
+  <v-container>
+    <v-row>
+      <v-col
+        md="3"
+        offset-md="1"
       >
-        <v-layout
-          row
-          wrap
-        >
-          <v-flex
-            d-flex
-            md12
+        <v-row>
+          <v-col
+            md="12"
           >
             <v-card>
               <v-card-text>
                 Your peer ID is {{ peerId }}
               </v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex
-            d-flex
-            md12
+          </v-col>
+          <v-col
+            md="12"
           >
             <v-card>
               <v-card-text>
@@ -91,10 +79,9 @@
                 </v-card-text>
               </v-slide-y-transition>
             </v-card>
-          </v-flex>
-          <v-flex
-            d-flex
-            md12
+          </v-col>
+          <v-col
+            md="12"
           >
             <v-card>
               <v-card-text>
@@ -120,16 +107,15 @@
                 </v-btn>
               </v-card-actions>
             </v-card>
-          </v-flex>
-          <v-flex
-            d-flex
-            md12
+          </v-col>
+          <v-col
+            md="12"
           >
             <v-card>
               <v-card-title>
                 Your video
               </v-card-title>
-              <v-card-media>
+              <v-card-text>
                 <video
                   id="my-video"
                   muted="true"
@@ -137,30 +123,35 @@
                   playsinline
                   controls
                 />
-              </v-card-media>
+              </v-card-text>
             </v-card>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex
-        d-flex
-        md7
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col
+        md="7"
       >
-        <v-card>
-          <v-card-title v-if="existingCall">
-            Connecting {{ existingCall.remoteId }}
-          </v-card-title>
-          <v-card-media>
-            <video
-              id="their-video"
-              autoplay
-              playsinline
-              controls
-            />
-          </v-card-media>
-        </v-card>
-      </v-flex>
-    </v-layout>
+        <v-row>
+          <v-col
+            md="12"
+          >
+            <v-card>
+              <v-card-title v-if="existingCall">
+                Connecting {{ existingCall.remoteId }}
+              </v-card-title>
+              <v-card-text>
+                <video
+                  id="their-video"
+                  autoplay
+                  playsinline
+                  controls
+                />
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
 
     <v-dialog
       v-model="dialog"
@@ -258,7 +249,7 @@ export default {
   },
   mounted() {
     this.peer = new Peer(this.name, {
-      key: process.env.VUE_APP_SKYWAY_KEY,
+      key: '2de21544-d969-411c-9e8d-7bb7056ca62c',
       debug: 3,
     })
 
