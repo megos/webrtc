@@ -1,9 +1,9 @@
 <template>
-  <v-layout row>
-    <v-flex
-      xs12
-      sm6
-      offset-sm3
+  <v-row>
+    <v-col
+      xs="12"
+      sm="6"
+      offset-sm="3"
     >
       <v-card>
         <v-form v-model="valid">
@@ -28,8 +28,8 @@
           </v-card-actions>
         </v-form>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -39,8 +39,8 @@ export default {
       valid: false,
       name: '',
       nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
+        (v) => !!v || 'Name is required',
+        (v) => v.length <= 10 || 'Name must be less than 10 characters',
       ],
     }
   },
