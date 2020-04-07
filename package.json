@@ -15,9 +15,9 @@
   },
   "devDependencies": {
     "@megos/eslint-config-vue": "0.0.7",
-    "@vue/cli-plugin-babel": "4.3.0",
-    "@vue/cli-plugin-eslint": "4.3.0",
-    "@vue/cli-service": "4.3.0",
+    "@vue/cli-plugin-babel": "4.3.1",
+    "@vue/cli-plugin-eslint": "4.3.1",
+    "@vue/cli-service": "4.3.1",
     "babel-eslint": "10.1.0",
     "eslint": "6.8.0",
     "sass": "1.26.3",
