@@ -7752,10 +7752,10 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-skyway-js@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/skyway-js/-/skyway-js-3.0.1.tgz#088e16e45282d27a0e177400a1a1458749ab4810"
-  integrity sha512-j7boTiHdTIV02pO1oK2msdoQA1+OiV0FoaNd6vBc++bDTA+vchIfB/jERYeFL1ZSRLTR34/BhlePGtSZg2tZPg==
+skyway-js@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/skyway-js/-/skyway-js-3.0.2.tgz#61e479b2c8b5cd72008c5f27035a6e0a5d4eef29"
+  integrity sha512-Mu7Mb09BR171uc8ULjy8Qt1cjagmDVyPB86pq62IFyXAZSkPdbRp59M1AOvIuw4WgLGxVI2/vE6RDyxLIMow9g==
   dependencies:
     "@types/node" "^12.6.8"
     detect-browser "^4.6.0"
