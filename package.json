@@ -11,7 +11,7 @@
     "skyway-js": "3.0.2",
     "vue": "2.6.11",
     "vue-router": "3.3.4",
-    "vuetify": "2.3.0"
+    "vuetify": "2.3.10"
   },
   "devDependencies": {
     "@megos/eslint-config-vue": "0.0.7",
