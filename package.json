@@ -10,7 +10,7 @@
   "dependencies": {
     "skyway-js": "3.0.2",
     "vue": "2.6.12",
-    "vue-router": "3.4.3",
+    "vue-router": "3.4.5",
     "vuetify": "2.3.10"
   },
   "devDependencies": {
