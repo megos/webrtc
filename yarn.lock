@@ -918,6 +918,13 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@jitsi/sdp-interop@^0.1.13":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@jitsi/sdp-interop/-/sdp-interop-0.1.14.tgz#a138448bf5e0868842ac0be7a8cd224511512674"
+  integrity sha512-v60VAtBx9LO46c9In9oMNY+Ho5993UMOLHBg6VcrcyoVTIWIeqs/9YjjmrQ3Sf4I5aMRABNl7HTby/1lHcqFJw==
+  dependencies:
+    sdp-transform "2.3.0"
+
 "@megos/eslint-config-base@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@megos/eslint-config-base/-/eslint-config-base-0.0.6.tgz#e478933689816937005faa868b190bf6e54fcd0d"
@@ -3495,11 +3502,10 @@ entities@^2.0.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.3.tgz#5c487e5742ab93c15abb5da22759b8590ec03b7f"
   integrity sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
 
-"enum@git+https://github.com/eastandwest/enum.git#react-native":
-  version "2.3.0"
-  resolved "git+https://github.com/eastandwest/enum.git#7f2a9e59b97c32f10abbc82378c2e0d779e89e1b"
-  dependencies:
-    is-buffer "^1.1.0"
+enum@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/enum/-/enum-3.0.4.tgz#6c3afd2c85db7ded79ecb54a703078a34b2bca2b"
+  integrity sha512-X+VaPeIut6Vh0nJq1sfSBQQuqVmjUpiheoR5RokqeRm4xkzsNZjOqK+gpSnW+BrEs5d9q7Wl+nf1LpolFDYp4g==
 
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.7"
@@ -4934,7 +4940,7 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
-is-buffer@^1.1.0, is-buffer@^1.1.5:
+is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
@@ -7494,13 +7500,6 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
-sdp-interop@^0.1.13:
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/sdp-interop/-/sdp-interop-0.1.13.tgz#353bb77d2162a33e786b77284199e132e28eb6d4"
-  integrity sha512-jxOtdFY2CCQoAnWFMfsp0W19oKkFIToybgHQhGp/0CsyE72Yv0vIx/+mQldp6QV++ffcGXZfOtIgleH4kzfRhQ==
-  dependencies:
-    sdp-transform "2.3.0"
-
 sdp-transform@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/sdp-transform/-/sdp-transform-2.3.0.tgz#57a9575942041d8577a869d7c74d4c3a0bd888f6"
@@ -7680,19 +7679,19 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-skyway-js@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/skyway-js/-/skyway-js-3.1.0.tgz#227fc8678a6aca08ac3bbd123bccf60f55c9496d"
-  integrity sha512-f2iG1fYHXjiC78ShC6dGmCmSXzOhZu0Acoaa19AsA6F4SgEou/miHFzHnw9d9pwSoBGz69bxQU3dgsaFmJ/9Gg==
+skyway-js@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/skyway-js/-/skyway-js-4.2.0.tgz#77b974ceba3d3bc23ff155ca34a699fa0b1747e4"
+  integrity sha512-NpaDfWnVliNFFeCEZHVrrsy+JyqDDXUh01VDu5eNB11Kz4DZOlFWwBYeL7RHn8SLrEB36SyMj51vwFH1IoGqEA==
   dependencies:
+    "@jitsi/sdp-interop" "^0.1.13"
     "@types/node" "^12.6.8"
     detect-browser "^4.6.0"
-    enum "git+https://github.com/eastandwest/enum.git#react-native"
+    enum "^3.0.4"
     events "^3.0.0"
     js-binarypack "0.0.9"
     object-sizeof "^1.4.0"
     query-string "^6.8.2"
-    sdp-interop "^0.1.13"
     sdp-transform "^2.11.0"
     socket.io-client "^2.2.0"
     socket.io-parser "~3.3.0"
