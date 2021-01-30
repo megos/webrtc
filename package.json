@@ -10,14 +10,14 @@
   "dependencies": {
     "skyway-js": "4.3.0",
     "vue": "2.6.12",
-    "vue-router": "3.4.9",
+    "vue-router": "3.5.1",
     "vuetify": "2.4.3"
   },
   "devDependencies": {
     "@megos/eslint-config-vue": "0.0.7",
-    "@vue/cli-plugin-babel": "4.5.10",
-    "@vue/cli-plugin-eslint": "4.5.10",
-    "@vue/cli-service": "4.5.10",
+    "@vue/cli-plugin-babel": "4.5.11",
+    "@vue/cli-plugin-eslint": "4.5.11",
+    "@vue/cli-service": "4.5.11",
     "babel-eslint": "10.1.0",
     "eslint": "7.18.0",
     "sass": "1.32.5",
