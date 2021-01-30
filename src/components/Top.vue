@@ -187,7 +187,7 @@
       {{ errorMessage.toString() }}
       <v-btn
         dark
-        flat
+        text
         @click="closeSnackbar"
       >
         Close
@@ -249,7 +249,7 @@ export default {
   },
   mounted() {
     this.peer = new Peer(this.name, {
-      key: '2de21544-d969-411c-9e8d-7bb7056ca62c',
+      key: process.env.VUE_APP_SKYWAY_KEY,
       debug: 3,
     })
 
