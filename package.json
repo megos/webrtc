@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "skyway-js": "4.3.0",
+    "skyway-js": "4.4.0",
     "vue": "2.6.12",
     "vue-router": "3.5.1",
     "vuetify": "2.4.3"
