@@ -8725,10 +8725,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-cli-plugin-vuetify@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-2.2.2.tgz#4b29854ad199d811941b8ca894ca34593127e0bf"
-  integrity sha512-e0p9fuc7YDDUjTi8Uw5XNEwfTZmY+5+kZ22k9ZGsWtDOtWt1dW/oZt3aZtSLrhzEPSimkOWNBD7KZOB3fxNEGA==
+vue-cli-plugin-vuetify@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-2.4.0.tgz#e3eca6a51592a1610b2006296efc31c52981b031"
+  integrity sha512-0gBy6TYeC5ez/Zya4wMLWXFQ+axKCbrZPc6OfOb5eXTLeUHqSTeyqbsqh0e8zxwBv0VJiQXdjyoY73UHhsb17A==
   dependencies:
     null-loader "^3.0.0"
     semver "^7.1.2"
