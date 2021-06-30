@@ -8838,10 +8838,10 @@ vuetify-loader@1.7.2:
     file-loader "^6.2.0"
     loader-utils "^2.0.0"
 
-vuetify@2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.5.3.tgz#9d703414a736879673c94550035adc177a6ca394"
-  integrity sha512-c0oX063PzWrIV29Mi7Pyi63OcF0FlCDJcgMvu0woTt4GL4yVmNQMh5hyKS5NEwlsS66HcjKJERMoY0JJc1bYGA==
+vuetify@2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.5.6.tgz#9cbb1eacece6c42028216312b9be23e35a7f5cf4"
+  integrity sha512-2T8ML5PYuJ/AdMVH3ZIvzHnsM0nX8t4Xzj+0HFFGfLT7jLlptCFpG+JE8+kyrgGZlbUgulyOwCUu8hJkVsReFA==
 
 watchpack-chokidar2@^2.0.0:
   version "2.0.0"
