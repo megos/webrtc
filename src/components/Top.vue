@@ -46,11 +46,9 @@
                   Screen share settings
                 </v-card-text>
                 <v-btn
-                  icon
-                  @click.native="show = !show"
-                >
-                  <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-                </v-btn>
+                  :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-up'"
+                  @click="show = !show"
+                />
               </v-card-actions>
               <v-slide-y-transition>
                 <v-card-text v-show="show">
@@ -186,8 +184,7 @@
     >
       {{ errorMessage.toString() }}
       <v-btn
-        dark
-        text
+        variant="text"
         @click="closeSnackbar"
       >
         Close
@@ -197,7 +194,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import { nextTick } from 'vue'
 import Peer from 'skyway-js'
 
 export default {
@@ -297,7 +294,7 @@ export default {
   },
   methods: {
     onChange() {
-      Vue.nextTick(() => {
+      nextTick(() => {
         // See. https://github.com/vuejs/vue/issues/293#issuecomment-265716984
         if (this.selectedVideo === 'screenShare') {
           if (!this.screenShare.isScreenShareAvailable()) {
