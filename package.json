@@ -15,7 +15,6 @@
     "vuetify": "3.11.2"
   },
   "devDependencies": {
-    "@megos/eslint-config-vue": "0.0.7",
     "@vue/cli-plugin-babel": "5.0.9",
     "@vue/cli-plugin-eslint": "5.0.9",
     "@vue/cli-service": "5.0.9",
@@ -30,13 +29,16 @@
       "node": true
     },
     "extends": [
-      "@megos/eslint-config-vue"
+      "plugin:vue/vue3-essential",
+      "@vue/eslint-config-standard"
     ],
     "globals": {
       "ScreenShare": true
     },
     "rules": {
-      "vue/multi-word-component-names": "off"
+      "vue/multi-word-component-names": "off",
+      "comma-dangle": ["error", "always-multiline"],
+      "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }]
     }
   },
   "postcss": {

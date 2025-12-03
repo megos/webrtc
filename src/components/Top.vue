@@ -278,14 +278,14 @@ export default {
         deviceInfos.forEach((deviceInfo) => {
           if (deviceInfo.kind === 'audioinput') {
             this.audios.push({
-              title: deviceInfo.label
-            || `Microphone ${this.audios.length + 1}`,
+              title: deviceInfo.label ||
+            `Microphone ${this.audios.length + 1}`,
               value: deviceInfo.deviceId,
             })
           } else if (deviceInfo.kind === 'videoinput') {
             this.videos.push({
-              title: deviceInfo.label
-            || `Camera  ${this.videos.length - 1}`,
+              title: deviceInfo.label ||
+            `Camera  ${this.videos.length - 1}`,
               value: deviceInfo.deviceId,
             })
           }
