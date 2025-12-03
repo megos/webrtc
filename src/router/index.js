@@ -9,7 +9,7 @@ const routes = [
     component: Login,
   },
   {
-    path: '/Top',
+    path: '/Top/:name',
     name: 'Top',
     component: Top,
     props: true,
