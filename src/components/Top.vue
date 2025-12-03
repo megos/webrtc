@@ -218,11 +218,11 @@ export default {
       mediaSource: 'window',
       audios: [],
       videos: [{
-        text: 'None',
+        title: 'None',
         value: null,
       },
       {
-        text: 'Screen share',
+        title: 'Screen share',
         value: 'screenShare',
       }],
       codecs: ['VP8', 'VP9', 'H264'],
@@ -278,13 +278,13 @@ export default {
         deviceInfos.forEach((deviceInfo) => {
           if (deviceInfo.kind === 'audioinput') {
             this.audios.push({
-              text: deviceInfo.label
+              title: deviceInfo.label
             || `Microphone ${this.audios.length + 1}`,
               value: deviceInfo.deviceId,
             })
           } else if (deviceInfo.kind === 'videoinput') {
             this.videos.push({
-              text: deviceInfo.label
+              title: deviceInfo.label
             || `Camera  ${this.videos.length - 1}`,
               value: deviceInfo.deviceId,
             })
