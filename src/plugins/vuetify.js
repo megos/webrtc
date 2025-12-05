@@ -18,8 +18,8 @@ import {
   VSpacer,
   VSnackbar,
 } from 'vuetify/components'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import 'vuetify/styles'
-import '@mdi/font/css/materialdesignicons.css'
 
 export default createVuetify({
   components: {
@@ -43,5 +43,9 @@ export default createVuetify({
   },
   icons: {
     defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
   },
 })

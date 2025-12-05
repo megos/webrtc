@@ -46,7 +46,7 @@
                   Screen share settings
                 </v-card-text>
                 <v-btn
-                  :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-up'"
+                  :icon="show ? mdiChevronDown : mdiChevronUp"
                   @click="show = !show"
                 />
               </v-card-actions>
@@ -196,6 +196,7 @@
 <script>
 import { nextTick } from 'vue'
 import Peer from 'skyway-js'
+import { mdiChevronDown, mdiChevronUp } from '@mdi/js'
 
 export default {
   props: {
@@ -234,6 +235,8 @@ export default {
       call: null,
       existingCall: null,
       errorMessage: '',
+      mdiChevronDown,
+      mdiChevronUp,
     }
   },
   computed: {
