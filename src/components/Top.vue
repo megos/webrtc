@@ -46,11 +46,9 @@
                   Screen share settings
                 </v-card-text>
                 <v-btn
-                  icon
-                  @click.native="show = !show"
-                >
-                  <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-                </v-btn>
+                  :icon="show ? mdiChevronDown : mdiChevronUp"
+                  @click="show = !show"
+                />
               </v-card-actions>
               <v-slide-y-transition>
                 <v-card-text v-show="show">
@@ -186,8 +184,7 @@
     >
       {{ errorMessage.toString() }}
       <v-btn
-        dark
-        text
+        variant="text"
         @click="closeSnackbar"
       >
         Close
@@ -197,8 +194,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import { nextTick } from 'vue'
 import Peer from 'skyway-js'
+import { mdiChevronDown, mdiChevronUp } from '@mdi/js'
 
 export default {
   props: {
@@ -221,11 +219,11 @@ export default {
       mediaSource: 'window',
       audios: [],
       videos: [{
-        text: 'None',
+        title: 'None',
         value: null,
       },
       {
-        text: 'Screen share',
+        title: 'Screen share',
         value: 'screenShare',
       }],
       codecs: ['VP8', 'VP9', 'H264'],
@@ -237,6 +235,8 @@ export default {
       call: null,
       existingCall: null,
       errorMessage: '',
+      mdiChevronDown,
+      mdiChevronUp,
     }
   },
   computed: {
@@ -281,14 +281,14 @@ export default {
         deviceInfos.forEach((deviceInfo) => {
           if (deviceInfo.kind === 'audioinput') {
             this.audios.push({
-              text: deviceInfo.label
-            || `Microphone ${this.audios.length + 1}`,
+              title: deviceInfo.label ||
+            `Microphone ${this.audios.length + 1}`,
               value: deviceInfo.deviceId,
             })
           } else if (deviceInfo.kind === 'videoinput') {
             this.videos.push({
-              text: deviceInfo.label
-            || `Camera  ${this.videos.length - 1}`,
+              title: deviceInfo.label ||
+            `Camera  ${this.videos.length - 1}`,
               value: deviceInfo.deviceId,
             })
           }
@@ -297,7 +297,7 @@ export default {
   },
   methods: {
     onChange() {
-      Vue.nextTick(() => {
+      nextTick(() => {
         // See. https://github.com/vuejs/vue/issues/293#issuecomment-265716984
         if (this.selectedVideo === 'screenShare') {
           if (!this.screenShare.isScreenShareAvailable()) {

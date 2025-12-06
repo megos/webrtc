@@ -1,10 +1,51 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import { createVuetify } from 'vuetify'
+import {
+  VApp,
+  VMain,
+  VContainer,
+  VRow,
+  VCol,
+  VCard,
+  VCardTitle,
+  VCardText,
+  VCardActions,
+  VForm,
+  VTextField,
+  VBtn,
+  VSelect,
+  VSlideYTransition,
+  VDialog,
+  VSpacer,
+  VSnackbar,
+} from 'vuetify/components'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
+import 'vuetify/styles'
 
-Vue.use(Vuetify)
-
-export default new Vuetify({
+export default createVuetify({
+  components: {
+    VApp,
+    VMain,
+    VContainer,
+    VRow,
+    VCol,
+    VCard,
+    VCardTitle,
+    VCardText,
+    VCardActions,
+    VForm,
+    VTextField,
+    VBtn,
+    VSelect,
+    VSlideYTransition,
+    VDialog,
+    VSpacer,
+    VSnackbar,
+  },
   icons: {
-    iconfont: 'mdi',
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
   },
 })
